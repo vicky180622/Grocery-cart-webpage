@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<style>
+    #insert {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        display: flex;
+        background-color: rgb(100, 97, 94);
+        width: 800px;
+        height: 50px;
+        border-radius: 40px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        align-items: center;
+        align-content: center;
+    }
+
+    #container {
+        margin-left: 38px;
+    }
+
+    .h {
+        text-align: center;
+        color: rgb(4, 93, 93);
+        background-color: rgb(210, 212, 212);
+    }
+
+    input {
+        border: rgb(222, 220, 225) solid;
+        border-radius: 5px;
+        background-color: rgb(164, 165, 165);
+        height: 25px;
+    }
+
+    button {
+        border: rgb(222, 220, 225) solid;
+        border-radius: 5px;
+        background-color: rgb(164, 165, 165);
+
+    }
+
+    table {
+        margin-left: 50%;
+        transform: translate(-50%);
+    }
+
+    table tr th {
+
+        border-radius: 5px;
+        padding-inline: 25px;
+        background-color: rgb(5, 63, 97);
+        color: white;
+    }
+
+    table tr:nth-child(even) {
+        padding-inline: 20px;
+        background-color: rgb(94, 151, 162);
+        color: rgb(22, 21, 21);
+        text-align: center;
+    }
+
+    table tr:nth-child(odd) {
+        padding-inline: 20px;
+        background-color: rgb(187, 189, 191);
+        color: rgb(22, 21, 21);
+        text-align: center;
+    }
+
+    table tr td {
+        border-radius: 5px;
+    }
+
+    select {
+        border: rgb(222, 220, 225) solid;
+        border-radius: 5px;
+        background-color: rgb(164, 165, 165);
+        height: 30px;
+    }
+
+    #btnExport {
+        margin-left: 50%;
+        transform: translate(-50%);
+        margin-top: 30px;
+    }
+
+    #clean {
+        margin-left: 50%;
+        transform: translate(-50%);
+        margin-top: 5px;
+    }
+
+    .heade {
+        margin-left: 50%;
+        transform: translate(-50%);
+        text-transform: uppercase;
+        background-image: linear-gradient(-225deg,
+                #231557 0%,
+                #44107a 29%,
+                #ff1361 67%,
+                #fff800 100%);
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        /* text-fill-color: transparent; */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 2s linear infinite;
+        display: inline-block;
+        /* font-size: 190px; */
+    }
+
+    @keyframes textclip {
+        to {
+            background-position: 200% center;
+        }
+    }
+
+    #minus {
+        background-color: rgb(248, 79, 49);
+        font-size: 15px;
+        height: 30px;
+        width: 40px;
+    }
+
+    #plus {
+        background-color: rgb(49, 248, 69);
+        font-size: 15px;
+        height: 30px;
+        width: 40px;
+    }
+
+    #add {
+        background-color: rgb(101, 178, 222);
+        font-size: 15px;
+        height: 30px;
+        width: 60px;
+    }
+
+    #btnExport {
+        background-color: rgb(22, 202, 43);
+        height: 30px;
+        width: 40px;
+    }
+
+    #clean {
+        background-color: rgb(248, 79, 49);
+        height: 30px;
+        width: 40px;
+    }
+</style>
+
+<body>
+    <script>
+        var count = 0;
+        var a = 0;
+        function s() {
+            if (a > 0)
+                a--
+            console.log(a)
+            document.getElementById("in").value = a;
+        }
+        function b() {
+            a++
+            console.log(a)
+            document.getElementById("in").value = a;
+        }
+        function c() {
+            var item = document.getElementById("items").value
+            var price = document.getElementById("price").value
+            var typee = document.getElementById("sel").value
+            if (item == "" || price == "" || a == "") {
+                alert("Feilds are empty")
+            }
+            else {
+                console.log(item);
+                console.log(a);
+                count++
+                var table = document.getElementById("mytable");
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                cell1.innerHTML = count;
+                cell2.innerHTML = item;
+                cell3.innerHTML = a;
+                cell4.innerHTML = typee;
+                cell5.innerHTML = price;
+                document.getElementById("items").value = "";
+                document.getElementById("in").value = "";
+                document.getElementById("price").value = "";
+                a = 0
+                var end = document.getElementById("end").innerHTML = '<button type="button" id="btnExport" value="Export" onclick="Export()" ><i class="fa fa-download"></i></button><br><button type="button" id="clean" value= "Trash" onclick="cle()"><i class="fa fa-trash"></i></button>'
+            }
+
+        }
+        function Export() {
+            html2canvas(document.getElementById('mytable'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        }
+        function cle() {
+            if (confirm("Press Ok to clear the List")) {
+                window.location.reload();
+            }
+        }
+    </script>
+
+    <div id="main">
+        <h2 class="heade">Grocery Cart Application</h2>
+        <h3 class="h">Add Grocery</h3>
+        <div id="insert">
+            <div id="container">
+                <input type="text" id="items" placeholder="Item" style="text-align: center;">
+                <button id="minus" onclick="s()">&minus;</button>
+                <input type="text" id="in" style="text-align: center;" placeholder="Quantity">
+                <button id="plus" onclick="b()">&plus;</button>
+                <select name="typee" id="sel">
+                    <option value="kg">Kg</option>
+                    <option value="ltr">ltr</option>
+                    <option value="piece">piece</option>
+                </select>
+                <input type="text" id="price" style="text-align: center;" placeholder="Estimate Price">
+                <button id="add" type="submit" onclick="c()">Add &darr;</button>
+            </div>
+        </div>
+        <!-- <button type="button" onclick="add()">Add</button> -->
+
+        <h3 class="h">Grocery List</h3>
+        <table id="mytable">
+            <tr>
+                <th>Sl.no</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Quantity-In</th>
+                <th>Estimate Price</th>
+            </tr>
+            <tr id="row"></tr>
+        </table>
+        <div id="end"></div>
+    </div>
+</body>
+
+</html>
